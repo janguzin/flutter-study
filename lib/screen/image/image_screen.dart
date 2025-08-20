@@ -18,6 +18,7 @@ class ImageScreen extends StatelessWidget {
               child: Image.network('https://sailing-it-images.s3.ap-northeast-2.amazonaws.com/company/company_device.png'),
               alignment: Alignment.topLeft,
             )
+
           ],
         ),
       ),
