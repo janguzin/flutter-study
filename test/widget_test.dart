@@ -11,6 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:smwu_202508/main.dart';
 
 import 'collections.dart';
+import 'conditional.dart';
 import 'method.dart';
 
 void main() {
@@ -22,5 +23,18 @@ void main() {
   collecion.listRemove();
   collecion.mapController();
   collecion.practice();
+
+  var conditional = Conditional(); //alt+enter
+  conditional.simpleSwitch();
+  conditional.connectionIf(82);
+  conditional.connectionSwitch(82);
+
+  void main () {
+    conditional.connectionIf(82);
+    conditional.connectionSwitch(90);
+  }
+
+
+
 
 }
