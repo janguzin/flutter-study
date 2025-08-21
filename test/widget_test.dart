@@ -18,4 +18,9 @@ void main() {
 
   var collecion = Collections();
 
+  collecion.listAdd();
+  collecion.listRemove();
+  collecion.mapController();
+  collecion.practice();
+
 }
