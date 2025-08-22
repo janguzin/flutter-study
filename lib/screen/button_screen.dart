@@ -6,6 +6,9 @@ import 'package:smwu_202508/screen/container/container_screen.dart';
 import 'package:smwu_202508/screen/image/image_screen.dart';
 import 'package:smwu_202508/screen/row/column_row_practice_screen.dart';
 import 'package:smwu_202508/screen/row/row_screen.dart';
+import 'package:smwu_202508/screen/scrollview/listview_builder_screen.dart';
+import 'package:smwu_202508/screen/scrollview/listview_practice_screen.dart';
+import 'package:smwu_202508/screen/scrollview/listview_screen.dart';
 import 'package:smwu_202508/screen/scrollview/scrollview_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_practice_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_screen.dart';
@@ -189,9 +192,31 @@ class ButtonScreen extends StatelessWidget {
               },
               child: Text("Scroll view"),
             ),
+            SizedBox(height: 10),
+            button(context, ListviewScreen(), "ListView"),
+            SizedBox(height: 10),
+            button(context, ListviewBuilderScreen(), "ListviewBuilder"),
+            SizedBox(height: 10),
+            button(context, ListviewPracticeScreen(), "Listview 실습")
           ],
         ),
       ),
+    );
+  }
+
+  Widget button(BuildContext context, Widget child, String name) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return child;
+            },
+          ),
+        );
+      },
+      child: Text(name),
     );
   }
 }
