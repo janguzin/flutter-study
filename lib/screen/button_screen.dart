@@ -4,6 +4,7 @@ import 'package:smwu_202508/screen/column/column_screen.dart';
 import 'package:smwu_202508/screen/container/container_practice_screen.dart';
 import 'package:smwu_202508/screen/container/container_screen.dart';
 import 'package:smwu_202508/screen/image/image_screen.dart';
+import 'package:smwu_202508/screen/navigator/navigator_screen.dart';
 import 'package:smwu_202508/screen/row/column_row_practice_screen.dart';
 import 'package:smwu_202508/screen/row/row_screen.dart';
 import 'package:smwu_202508/screen/scrollview/listview_builder_screen.dart';
@@ -12,8 +13,10 @@ import 'package:smwu_202508/screen/scrollview/listview_screen.dart';
 import 'package:smwu_202508/screen/scrollview/scrollview_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_practice_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_screen.dart';
+import 'package:smwu_202508/screen/statefull/statefull_screen.dart';
 import 'package:smwu_202508/screen/text/text_practice_screen.dart';
 import 'package:smwu_202508/screen/text/text_screen.dart';
+import 'package:smwu_202508/screen/todo/todo_screen.dart';
 
 class ButtonScreen extends StatelessWidget {
   const ButtonScreen({super.key});
@@ -197,7 +200,14 @@ class ButtonScreen extends StatelessWidget {
             SizedBox(height: 10),
             button(context, ListviewBuilderScreen(), "ListviewBuilder"),
             SizedBox(height: 10),
-            button(context, ListviewPracticeScreen(), "Listview 실습")
+            button(context, ListviewPracticeScreen(), "Listview 실습"),
+            SizedBox(height: 10),
+            button(context, StatefullScreen(), "Statefull"),
+            SizedBox(height: 10),
+            button(context, NavigatorScreen(), "navi screen"),
+            SizedBox(height: 10),
+            button(context, TodoScreen(), "todo screen")
+
           ],
         ),
       ),
