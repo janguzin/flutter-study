@@ -5,6 +5,7 @@ import 'package:smwu_202508/screen/container/container_practice_screen.dart';
 import 'package:smwu_202508/screen/container/container_screen.dart';
 import 'package:smwu_202508/screen/image/image_screen.dart';
 import 'package:smwu_202508/screen/navigator/navigator_screen.dart';
+import 'package:smwu_202508/screen/network/network_screen.dart';
 import 'package:smwu_202508/screen/row/column_row_practice_screen.dart';
 import 'package:smwu_202508/screen/row/row_screen.dart';
 import 'package:smwu_202508/screen/scrollview/listview_builder_screen.dart';
@@ -206,7 +207,9 @@ class ButtonScreen extends StatelessWidget {
             SizedBox(height: 10),
             button(context, NavigatorScreen(), "navi screen"),
             SizedBox(height: 10),
-            button(context, TodoScreen(), "todo screen")
+            button(context, TodoScreen(), "todo screen"),
+            SizedBox(height: 10),
+            button(context, NetworkScreen(), "network screen")
 
           ],
         ),
