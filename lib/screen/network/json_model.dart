@@ -3,9 +3,9 @@ class JsonModel{
   int number;
   Info? info;
   List<Framework> frameworks;
-  List<Member> member;
+  //List<Member> member;
 
-  JsonModel(this.id, this.number, this.info, this.frameworks, this.member);
+  JsonModel(this.id, this.number, this.info, this.frameworks);
 
   factory JsonModel.fromJson(Map<String, dynamic> json) {
     return JsonModel(
@@ -19,11 +19,11 @@ class JsonModel{
           : (json['framework'] as List)
           .map((e) => Framework.fromJson(e))
           .toList(),
-      json['member'] == null
-          ? []
-          : (json['member'] as List)
-          .map((e) => Member.fromJson(e))
-          .toList(),
+      // json['member'] == null
+      //     ? []
+      //     : (json['member'] as List)
+      //     .map((e) => Member.fromJson(e))
+      //     .toList(),
 
     );
   }
@@ -105,22 +105,22 @@ class Framework {
   }
 }
 
-class Member {
-  String email;
-  String description;
-
-  Member(this.email, this.description);
-
-  factory Member.fromJson(Map<String, dynamic> json) {
-    return Member(
-        json['email'] ?? '',
-        json['description'] ?? '');
-  }
-
-  @override
-  String toString() {
-    return 'Member{email: $email, description: $description}';
-  }
-
-
-}
+// class Member {
+//   String email;
+//   String description;
+//
+//   Member(this.email, this.description);
+//
+//   factory Member.fromJson(Map<String, dynamic> json) {
+//     return Member(
+//         json['email'] ?? '',
+//         json['description'] ?? '');
+//   }
+//
+//   @override
+//   String toString() {
+//     return 'Member{email: $email, description: $description}';
+//   }
+//
+//
+// }
