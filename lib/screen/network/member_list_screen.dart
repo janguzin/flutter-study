@@ -22,20 +22,38 @@ class _MemberListScreenState extends State<MemberListScreen> {
       body: Column(
         children: [
           ElevatedButton(onPressed: () {
-            dio.get("/api/v1/member/all");
+            dio.get("/api/v1/member/all").then((value) {
+              print(value);
+              List<Member> members = (value.data as List)
+                  .map((e) => Member.fromJson(e as Map<String, dynamic>))
+                  .toList();
+
+              print(members);
+            },);
 
           }, child: Text("Get Data")),
+
+
+          // ElevatedButton(onPressed: () {
+          //   dio2.get("").then((value) {
+          //     print(value);
+          //     var jsonModel = JsonModel.fromJson(value.data);
+          //     print(jsonModel);
+          //   },);
+          // }, child: Text("Get Jason")),
+
+
+
           ElevatedButton(onPressed: () {
             dio2.get("").then((value) {
               print(value);
               var jsonModel = JsonModel.fromJson(value.data);
-              print(jsonModel);
+              //print(jsonModel);
+              print(jsonModel.member);
             },);
           }, child: Text("Get Jason")),
         ],
       ),
-
-
     );
   }
 }
