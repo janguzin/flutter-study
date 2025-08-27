@@ -11,7 +11,7 @@ class MemberListScreen extends StatefulWidget {
 }
 
 class _MemberListScreenState extends State<MemberListScreen> {
-  Dio dio = Dio(BaseOptions(baseUrl: "https://d0a701c36a9e.ngrok-free.app"));
+  Dio dio = Dio(BaseOptions(baseUrl: "https://0f5d227aa566.ngrok-free.app"));
   Dio dio2 = Dio(
     BaseOptions(
       baseUrl:
@@ -20,27 +20,40 @@ class _MemberListScreenState extends State<MemberListScreen> {
   );
 
   List<Member> memberList = [];
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
+    if (loading) {
+      return Scaffold(body: CircularProgressIndicator());
+    }
     return Scaffold(
       appBar: AppBar(title: Text("멤버 조회")),
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {
-              dio.get('/api/v1/member/all').then((value) {
-                if (value.data is Iterable) {}
-                memberList =
-                    (value.data as Iterable)
-                        .map((e) => Member.fromJson(e))
-                        .toList();
-                setState(() {});
-              });
+            onPressed: () async {
+              loading = true;
+              setState(() {});
+              var response = await dio.get('/api/v1/member/all');
+              memberList =
+                  (response.data as Iterable)
+                      .map((e) => Member.fromJson(e))
+                      .toList();
+              loading = false;
+              setState(() {});
+
+              // dio.get('/api/v1/member/all').then((value) {
+              //   if (value.data is Iterable) {}
+              //   memberList =
+              //       (value.data as Iterable)
+              //           .map((e) => Member.fromJson(e))
+              //           .toList();
+              //   setState(() {});
+              // });
             },
             child: Text("Get Data"),
           ),
-
 
           Expanded(
             child: ListView.builder(
@@ -53,7 +66,6 @@ class _MemberListScreenState extends State<MemberListScreen> {
                     children: [
                       Text("이메일 : ${memberList[index].email}"),
                       Text("설명 : ${memberList[index].description}"),
-
                     ],
                   ),
                 );

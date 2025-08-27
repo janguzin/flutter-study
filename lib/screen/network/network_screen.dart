@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smwu_202508/screen/network/member_list_screen.dart';
+import 'package:smwu_202508/screen/network/member_registor_screen.dart';
 
 class NetworkScreen extends StatefulWidget {
   const NetworkScreen({super.key});
@@ -24,6 +25,16 @@ class _NetworkScreenState extends State<NetworkScreen> {
             );
 
           }, child: Text("회원 목록 조회")),
+          ElevatedButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return MemberRegistorScreen();
+              },
+              ),
+            );
+
+          }, child: Text("회원 등록")),
         ],
       ),
 
