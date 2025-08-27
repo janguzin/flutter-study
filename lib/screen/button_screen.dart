@@ -7,6 +7,7 @@ import 'package:smwu_202508/screen/future/future_screen.dart';
 import 'package:smwu_202508/screen/image/image_screen.dart';
 import 'package:smwu_202508/screen/navigator/navigator_screen.dart';
 import 'package:smwu_202508/screen/network/network_screen.dart';
+import 'package:smwu_202508/screen/news/news_screen.dart';
 import 'package:smwu_202508/screen/row/column_row_practice_screen.dart';
 import 'package:smwu_202508/screen/row/row_screen.dart';
 import 'package:smwu_202508/screen/scrollview/listview_builder_screen.dart';
@@ -212,7 +213,9 @@ class ButtonScreen extends StatelessWidget {
             SizedBox(height: 10),
             button(context, NetworkScreen(), "network screen"),
             SizedBox(height: 10),
-            button(context, FutureScreen(), "future screen")
+            button(context, FutureScreen(), "future screen"),
+            SizedBox(height: 10),
+            button(context, NewsScreen(), "news screen")
 
           ],
         ),
