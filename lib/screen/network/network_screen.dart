@@ -35,12 +35,10 @@ class _NetworkScreenState extends State<NetworkScreen> {
             ).then((value) {
               if(value != null && value is bool && value) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('등록 성공')));
-                
+
               }
             }
-            
             );
-
           }, child: Text("회원 등록")),
         ],
       ),
