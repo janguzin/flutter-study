@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:smwu_202508/screen/news/article.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -22,6 +23,8 @@ class _NewsScreenState extends State<NewsScreen> {
 
   bool loading = true;
   int page = 1;
+  List<Article> articles = [];
+  int totalResults = 0;
 
   Future<void> getData() async {
     if (!loading) {
@@ -44,6 +47,15 @@ class _NewsScreenState extends State<NewsScreen> {
     );
 
     var response = await Dio().get(uri.toString());
+
+    totalResults = response.data[''] ?? 0;
+    List<Article> tempList = (response.data["articles"] as Iterable).map((e) {
+      return Article.fromJson(e);
+    }).toList();
+    articles.addAll(tempList);
+
+    print(articles);
+
     // 1. ArticleModel 생성
     // 2. List<ArticleModel> articles 생성
 
@@ -64,35 +76,46 @@ class _NewsScreenState extends State<NewsScreen> {
       body: ListView.builder(
         padding: EdgeInsets.all(16),
         itemBuilder: (context, index) {
+          var model = articles[index];
+
           return Padding(
             padding: EdgeInsets.only(bottom: 24),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(width: 130, height: 130, color: Colors.grey),
+                Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.grey,
+                  child: model.urlToImage.isEmpty
+                      ? null
+                      : Image.network(model.urlToImage, fit: BoxFit.cover),
+                ),
                 SizedBox(width: 16),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "타이틀",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        model.title,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
-                    ),
-                    Text("부제", style: TextStyle(fontSize: 17), maxLines: 2),
-                    Text("언론사명", style: TextStyle(fontSize: 14)),
-                    Text("날짜", style: TextStyle(fontSize: 14)),
-                  ],
+                      Text(model.description, style: TextStyle(fontSize: 17), maxLines: 2),
+                      Text(model.author, style: TextStyle(fontSize: 14)),
+                      Text(model.publishment, style: TextStyle(fontSize: 14)),
+                    ],
+                  ),
                 ),
               ],
             ),
           );
         },
-        itemCount: 10,
+        itemCount: articles.length,
       ),
     );
   }
