@@ -20,6 +20,7 @@ class _NewsScreenState extends State<NewsScreen> {
   /// GET과 POST의 차이
   /// GET은 인터넷 주소창에 검색해도 호출 가능.
   /// POST는 인터넷 주소창에서 호출 불가능.
+  /// key는 절대 올리면 깃헙에 올리면 안됨.
 
   bool loading = true;
   int page = 1;
