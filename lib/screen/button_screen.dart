@@ -28,8 +28,8 @@ class ButtonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ElevatedButton(
               onPressed: () {
