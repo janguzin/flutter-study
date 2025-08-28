@@ -25,6 +25,9 @@ class _NewsScreenState extends State<NewsScreen> {
   int page = 1;
   List<Article> articles = [];
   int totalResults = 0;
+  ScrollController scrollController = ScrollController();
+
+
 
   Future<void> getData() async {
     if (!loading) {
@@ -40,7 +43,7 @@ class _NewsScreenState extends State<NewsScreen> {
         "q": "google",
         "from": "2025-08-01",
         "sortBy": "publishedAt",
-        "apiKey": "f4e382a85f8e45a5878357459c397275",
+        "apiKey": "",
         "pageSize": "20",
         "page": page.toString(),
       },
@@ -48,7 +51,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
     var response = await Dio().get(uri.toString());
 
-    totalResults = response.data[''] ?? 0;
+    totalResults = response.data["totalResults"] ?? 0;
     List<Article> tempList = (response.data["articles"] as Iterable).map((e) {
       return Article.fromJson(e);
     }).toList();
@@ -66,6 +69,18 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     getData();
+    scrollController.addListener(() {
+      if(scrollController.position.atEdge){
+        bool isBottom =
+            scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent;
+        if(isBottom && totalResults > articles.length && !loading){
+          page ++;
+          getData();
+
+        }
+      }
+    },);
     super.initState();
   }
 
@@ -74,6 +89,7 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("News")),
       body: ListView.builder(
+        controller: scrollController,
         padding: EdgeInsets.all(16),
         itemBuilder: (context, index) {
           var model = articles[index];
